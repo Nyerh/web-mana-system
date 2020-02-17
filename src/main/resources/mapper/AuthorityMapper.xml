@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weblite.webmanasystem.mapper.AuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.weblite.webmanasystem.domain.entity.Authority">
+    <!--@mbg.generated-->
+    <id column="a_id" jdbcType="VARCHAR" property="aId" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="a_identity" jdbcType="VARCHAR" property="aIdentity" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    a_id, u_id, a_identity
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from authority
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from authority
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.weblite.webmanasystem.domain.entity.Authority">
+    <!--@mbg.generated-->
+    insert into authority (a_id, u_id, a_identity
+      )
+    values (#{aId,jdbcType=VARCHAR}, #{uId,jdbcType=VARCHAR}, #{aIdentity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.weblite.webmanasystem.domain.entity.Authority">
+    <!--@mbg.generated-->
+    insert into authority
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        a_id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="aIdentity != null">
+        a_identity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        #{aId,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="aIdentity != null">
+        #{aIdentity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weblite.webmanasystem.domain.entity.Authority">
+    <!--@mbg.generated-->
+    update authority
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="aIdentity != null">
+        a_identity = #{aIdentity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weblite.webmanasystem.domain.entity.Authority">
+    <!--@mbg.generated-->
+    update authority
+    set u_id = #{uId,jdbcType=VARCHAR},
+      a_identity = #{aIdentity,jdbcType=VARCHAR}
+    where a_id = #{aId,jdbcType=VARCHAR}
+  </update>
+    <select id="selectAllSelective" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List" />
+   from authority
+   where 1=1
+   <if test="authority.aId!=null "> and #{authority.aId}=a_id</if>
+   <if test="authority.uId!=null "> and #{authority.uId}=u_id</if>
+   <if test="authority.aIdentity!=null "> and #{authority.aIdentity}=a_identity</if>
+     limit #{page},#{pageSize};
+    </select>
+  <select id="selectBySelective" resultMap="BaseResultMap">
+    from authority
+    where 1=1
+    <if test="authority.aId!=null "> and #{authority.aId}=a_id</if>
+    <if test="authority.uId!=null "> and #{authority.uId}=u_id</if>
+    <if test="authority.aIdentity!=null "> and #{authority.aIdentity}=a_identity</if>
+  </select>
+</mapper>

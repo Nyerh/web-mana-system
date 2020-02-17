@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weblite.webmanasystem.mapper.ViewMapper">
+  <resultMap id="BaseResultMap" type="com.weblite.webmanasystem.domain.entity.View">
+    <!--@mbg.generated-->
+    <id column="v_id" jdbcType="VARCHAR" property="vId" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="v_name" jdbcType="VARCHAR" property="vName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    v_id, u_id, v_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from view
+    where v_id = #{vId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from view
+    where v_id = #{vId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.weblite.webmanasystem.domain.entity.View">
+    <!--@mbg.generated-->
+    insert into view (v_id, u_id, v_name
+      )
+    values (#{vId,jdbcType=VARCHAR}, #{uId,jdbcType=VARCHAR}, #{vName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.weblite.webmanasystem.domain.entity.View">
+    <!--@mbg.generated-->
+    insert into view
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vId != null">
+        v_id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="vName != null">
+        v_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vId != null">
+        #{vId,jdbcType=VARCHAR},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="vName != null">
+        #{vName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weblite.webmanasystem.domain.entity.View">
+    <!--@mbg.generated-->
+    update view
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="vName != null">
+        v_name = #{vName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where v_id = #{vId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weblite.webmanasystem.domain.entity.View">
+    <!--@mbg.generated-->
+    update view
+    set u_id = #{uId,jdbcType=VARCHAR},
+      v_name = #{vName,jdbcType=VARCHAR}
+    where v_id = #{vId,jdbcType=VARCHAR}
+  </update>
+</mapper>

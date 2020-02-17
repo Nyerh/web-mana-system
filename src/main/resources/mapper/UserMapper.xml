@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weblite.webmanasystem.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.weblite.webmanasystem.domain.entity.User">
+    <!--@mbg.generated-->
+    <id column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="u_name" jdbcType="VARCHAR" property="uName" />
+    <result column="u_password" jdbcType="VARCHAR" property="uPassword" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    u_id, u_name, u_password
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from user
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.weblite.webmanasystem.domain.entity.User">
+    <!--@mbg.generated-->
+    insert into user (u_id, u_name, u_password
+      )
+    values (#{uId,jdbcType=VARCHAR}, #{uName,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.weblite.webmanasystem.domain.entity.User">
+    <!--@mbg.generated-->
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="uName != null">
+        u_name,
+      </if>
+      <if test="uPassword != null">
+        u_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="uName != null">
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        #{uPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weblite.webmanasystem.domain.entity.User">
+    <!--@mbg.generated-->
+    update user
+    <set>
+      <if test="uName != null">
+        u_name = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        u_password = #{uPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weblite.webmanasystem.domain.entity.User">
+    <!--@mbg.generated-->
+    update user
+    set u_name = #{uName,jdbcType=VARCHAR},
+      u_password = #{uPassword,jdbcType=VARCHAR}
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </update>
+    <select id="selectAllSelective" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List" />
+    from user
+    where 1=1
+    <if test="user.uId != null and user.uId != ''"> and u_id=#{user.uId}</if>
+    <if test="user.uName != null and user.uName != ''"> and u_name=#{user.uName}</if>
+    <if test="user.uPassword != null and user.uPassword != ''"> and u_password=#{user.uPassword}</if>
+      limit #{page},#{pageSize};
+    </select>
+    <select id="selectBySelective" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List" />
+      from user
+      where 1=1
+      <if test="user.uId != null and user.uId != ''"> and u_id=#{user.uId}</if>
+      <if test="user.uName != null and user.uName != ''"> and u_name=#{user.uName}</if>
+      <if test="user.uPassword != null and user.uPassword != ''"> and u_password=#{user.uPassword}</if>
+    </select>
+</mapper>
