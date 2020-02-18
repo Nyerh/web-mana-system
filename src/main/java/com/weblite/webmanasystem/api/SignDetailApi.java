@@ -39,7 +39,7 @@ public class SignDetailApi {
     @RequestMapping("showDetails")
     @ApiOperation("展示签到信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", dataType = "Integer", value = "记录id"),
+            @ApiImplicitParam(name = "id", dataType = "Integer", value = "信息记录id"),
             @ApiImplicitParam(name = "uId", dataType = "String", value = "用户id"),
             @ApiImplicitParam(name = "page", dataType = "Integer", value = "当前页"),
             @ApiImplicitParam(name = "pageSize", dataType = "Integer", value = "页面数据量"),
@@ -61,7 +61,9 @@ public class SignDetailApi {
         }
         UserSignDto userSignDto = new UserSignDto().setId(id).setuId(uId);
         List<UserSignDto> userSignList = signDetailService.getUserSignList(userSignDto, page, pageSize);
+        Integer count = signDetailService.count(userSignDto);
         return new Msg().setItems(userSignList)
+                .setTotal(count)
                 .setMsg("获取成功")
                 .setState(STATE.Success.getState());
     }

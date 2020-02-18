@@ -8,7 +8,6 @@ import com.weblite.webmanasystem.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,9 +27,6 @@ public class UserManagerApi {
     SignDetailService signDetailService;
     @Resource
     UserService userService;
-
-    public static Long workCode=0L;
-    public static Long dataCode=0L;
 
 
     @PostMapping("userLogin")
@@ -52,6 +48,27 @@ public class UserManagerApi {
                 .setItems(login)
                 .setState(STATE.ParamErr.getState());
     }
+
+
+    @PostMapping("userRegister")
+    @ApiOperation("用户注册")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", dataType = "String", value = "账号"),
+            @ApiImplicitParam(name = "password", dataType = "String", value = "密码"),
+    })
+    public Msg userRegister(@RequestParam(value = "username") String username,
+                          @RequestParam(value = "password") String password)
+    {
+        Integer register = userService.register(username, password);
+        if(register==0)
+        {
+            return new Msg().setState(STATE.ParamErr.getState())
+                    .setMsg("注册时失败,检查参数");
+        }
+        return new Msg().setState(STATE.Success.getState())
+                .setMsg("注册成功");
+    }
+
 
 
 }

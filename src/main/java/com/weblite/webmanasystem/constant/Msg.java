@@ -8,6 +8,7 @@ package com.weblite.webmanasystem.constant;
 public class Msg {
 
     private int state;
+    private int total;
     private String msg;
     private Object items;
 
@@ -15,9 +16,10 @@ public class Msg {
     {
     }
 
-    public Msg(int state, String msg, Object items)
+    public Msg(int state,int total, String msg, Object items)
     {
         this.state = state;
+        this.total=total;
         this.msg = msg;
         this.items = items;
     }
@@ -28,6 +30,15 @@ public class Msg {
 
     public Msg setState(int state) {
         this.state = state;
+        return this;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public Msg setTotal(int total) {
+        this.total = total;
         return this;
     }
 

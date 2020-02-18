@@ -1,5 +1,7 @@
 package com.weblite.webmanasystem.constant;
 
+import com.weblite.webmanasystem.utils.SnowFlakeIdWorker;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -10,6 +12,17 @@ import java.util.*;
  * @Description:工具方法
  */
 public class Common {
+
+    public static Long workCode=0L;
+    public static Long dataCode=0L;
+    public static SnowFlakeIdWorker snowFlakeIdWorker = new SnowFlakeIdWorker(workCode, dataCode);
+
+
+    //获取序列号作为id
+    public static Long getFlowNum()
+    {
+        return snowFlakeIdWorker.nextId();
+    }
 
 
     /**

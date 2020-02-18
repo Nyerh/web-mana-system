@@ -1,17 +1,17 @@
 package com.weblite.webmanasystem.domain.entity;
 
 public class View {
-    private String vId;
+    private Integer vId;
 
     private String uId;
 
     private String vName;
 
-    public String getvId() {
+    public Integer getvId() {
         return vId;
     }
 
-    public void setvId(String vId) {
+    public void setvId(Integer vId) {
         this.vId = vId;
     }
 

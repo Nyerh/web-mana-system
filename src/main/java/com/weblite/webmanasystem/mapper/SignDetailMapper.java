@@ -19,4 +19,7 @@ public interface SignDetailMapper {
     int updateByPrimaryKey(SignDetail record);
 
     List<SignDetail> selectAllSelective(@Param("signDetail") SignDetail signDetail,@Param("page") Integer page,@Param("pageSize") Integer pageSize);
+
+    Integer selectCountBySelective(@Param("signDetail") SignDetail signDetail);
+
 }

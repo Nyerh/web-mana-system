@@ -54,10 +54,21 @@ public class SignDetailService {
         return userSignDtos;
     }
 
+    public Integer count(UserSignDto userSignDto)
+    {
+        //判空
+        UserSignDto userSignDtos1 = Optional.ofNullable(userSignDto).orElseGet(UserSignDto::new);
+        SignDetail signDetail = new SignDetail();
+        BeanUtils.copyProperties(userSignDtos1,signDetail);
+        return signDetailMapper.selectCountBySelective(signDetail);
+    }
+
     public Integer cancelSign(Integer id)
     {
         return signDetailMapper.deleteByPrimaryKey(id);
     }
+
+
 
 
 }
