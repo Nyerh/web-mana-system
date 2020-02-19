@@ -1,5 +1,11 @@
 package com.weblite.webmanasystem.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.TypeReference;
+import com.weblite.webmanasystem.constant.Common;
+import com.weblite.webmanasystem.constant.ExcelWriteSheetFormat;
+import com.weblite.webmanasystem.constant.ExcelWriterHelper;
 import com.weblite.webmanasystem.domain.dto.UserSignDto;
 import com.weblite.webmanasystem.domain.entity.Authority;
 import com.weblite.webmanasystem.domain.entity.SignDetail;
@@ -12,10 +18,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
@@ -63,9 +67,26 @@ public class SignDetailService {
         return signDetailMapper.selectCountBySelective(signDetail);
     }
 
+    public List<SignDetail> getSignDetailList(List<Integer> signDetailList)
+    {
+        List<SignDetail> list=new ArrayList<>();
+        signDetailList.forEach(sign->{
+            SignDetail signDetail = signDetailMapper.selectByPrimaryKey(sign);
+            list.add(signDetail);
+        });
+        return list;
+    }
+
     public Integer cancelSign(Integer id)
     {
         return signDetailMapper.deleteByPrimaryKey(id);
+    }
+
+
+    //Excel映射对象
+    public static <T> List<Map<String,Object>> convertObjToMap(List<T> list)
+    {
+        return JSON.parseObject(JSONArray.toJSONString(list), new TypeReference<List<Map<String, Object>>>() {});
     }
 
 

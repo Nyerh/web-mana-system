@@ -12,9 +12,7 @@ import com.weblite.webmanasystem.mapper.ViewMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author ：Beatrice
@@ -74,4 +72,40 @@ public class UserService {
         }
         return 1;
     }
+
+    //
+    public Authority getAuth(Authority authority)
+    {
+        return Optional.ofNullable(authorityMapper.selectBySelective(authority)).orElseGet(()->new ArrayList<>()).get(0);
+    }
+
+    //改变用户-身份
+    public Integer changeAuth(Authority authority)
+    {
+        return authorityMapper.updateByPrimaryKeySelective(authority);
+    }
+    //改变用户信息
+    public Integer changeUserInfo(User user)
+    {
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+
+    public Map<String,String> getUserInfoMap(User user)
+    {
+        List<User> users = Optional.ofNullable(userMapper.selectBySelective(user)).orElseGet(() -> new ArrayList<User>());
+        Map<String, String> maps = new HashMap<>();
+        users.forEach(a->maps.put(a.getuId(),a.getuName()));
+        return maps;
+    }
+
+    public Map<String,String> getUserAuthMap(Authority authority)
+    {
+        List<Authority> authorities = Optional.ofNullable(authorityMapper.selectBySelective(authority)).orElseGet(() -> new ArrayList<Authority>());
+        Map<String, String> maps = new HashMap<>();
+        authorities.forEach(a->maps.put(a.getuId(),a.getaIdentity()));
+        return maps;
+    }
+
+
 }

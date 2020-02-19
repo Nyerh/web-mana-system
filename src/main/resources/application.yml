@@ -13,6 +13,8 @@ spring:
       max-active: 10
       min-idle: 3
       filters: stat,wall
+mconfig:
+  swagger-ui-open:true
 mybatis:
   mapper-locations: classpath:/mappers/**/*.xml
   configuration:

@@ -1,7 +1,9 @@
 package com.weblite.webmanasystem.mapper;
 
 import com.weblite.webmanasystem.domain.entity.View;
+import org.apache.ibatis.annotations.Mapper;
 
+/*@Mapper*/
 public interface ViewMapper {
     int deleteByPrimaryKey(Integer vId);
 

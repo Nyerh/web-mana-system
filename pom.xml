@@ -16,16 +16,12 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <springfox-swagger2-version>2.9.2</springfox-swagger2-version>
-        <springfox-swagger-ui-version>2.9.2</springfox-swagger-ui-version>
+        <springfox-swagger2-version>2.7.0</springfox-swagger2-version>
+        <springfox-swagger-ui-version>2.7.0</springfox-swagger-ui-version>
         <swagger-models-version>1.5.21</swagger-models-version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -116,6 +112,12 @@
             <groupId>org.docx4j</groupId>
             <artifactId>docx4j</artifactId>
             <version>6.1.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.docx4j</groupId>

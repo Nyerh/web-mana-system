@@ -24,6 +24,16 @@ public class Common {
         return snowFlakeIdWorker.nextId();
     }
 
+    /**
+     * 是否为空
+     *
+     * @param string
+     * @return
+     */
+    public static boolean isNullOrEmpty(String string) {
+        return string == null || string.trim().equals("");
+    }
+
 
     /**
      * string转date（错误返回NULL）
