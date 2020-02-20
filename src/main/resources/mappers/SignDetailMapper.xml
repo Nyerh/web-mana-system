@@ -76,21 +76,22 @@
       sign_time = #{signTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select id="selectAllSelective" resultMap="BaseResultMap">
-      select <include refid="Base_Column_List" />
-      from sign_detail
-      where 1=1
-      <if test="signDetail.id != null"> and id=#{signDetail.id}</if>
-      <if test="signDetail.uId != null"> and u_id=#{signDetail.uId}</if>
-      <if test="signDetail.signTime != null"> and sign_time=#{signDetail.signTime}</if>
-        limit #{page},#{pageSize};
-    </select>
-    <select id="selectCountBySelective" resultType="java.lang.Integer">
-      select count(1)
-      from  sign_detail
-      where 1=1
-      <if test="signDetail.id != null"> and id=#{signDetail.id}</if>
-      <if test="signDetail.uId != null"> and u_id=#{signDetail.uId}</if>
-      <if test="signDetail.signTime != null"> and sign_time=#{signDetail.signTime}</if>
-    </select>
+
+  <select id="selectAllSelective" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from sign_detail
+    where 1=1
+    <if test="signDetail.id != null"> and id=#{signDetail.id}</if>
+    <if test="signDetail.uId != null"> and u_id=#{signDetail.uId}</if>
+    <if test="signDetail.signTime != null"> and sign_time=#{signDetail.signTime}</if>
+    limit #{page},#{pageSize};
+  </select>
+  <select id="selectCountBySelective" resultType="java.lang.Integer">
+    select count(1)
+    from  sign_detail
+    where 1=1
+    <if test="signDetail.id != null"> and id=#{signDetail.id}</if>
+    <if test="signDetail.uId != null"> and u_id=#{signDetail.uId}</if>
+    <if test="signDetail.signTime != null"> and sign_time=#{signDetail.signTime}</if>
+  </select>
 </mapper>

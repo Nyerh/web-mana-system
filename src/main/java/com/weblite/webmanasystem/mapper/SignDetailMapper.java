@@ -1,10 +1,11 @@
 package com.weblite.webmanasystem.mapper;
 
 import com.weblite.webmanasystem.domain.entity.SignDetail;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface SignDetailMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -18,8 +19,7 @@ public interface SignDetailMapper {
 
     int updateByPrimaryKey(SignDetail record);
 
-    List<SignDetail> selectAllSelective(@Param("signDetail") SignDetail signDetail,@Param("page") Integer page,@Param("pageSize") Integer pageSize);
+    List<SignDetail> selectAllSelective(@Param("signDetail") SignDetail signDetail, @Param("page") Integer page, @Param("pageSize") Integer pageSize);
 
     Integer selectCountBySelective(@Param("signDetail") SignDetail signDetail);
-
 }

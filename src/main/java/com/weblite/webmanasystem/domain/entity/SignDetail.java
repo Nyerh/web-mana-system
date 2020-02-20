@@ -1,12 +1,18 @@
 package com.weblite.webmanasystem.domain.entity;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Component
 public class SignDetail {
     private Integer id;
 
     private String uId;
 
+    /**
+     * 登记登录时间
+     */
     private Date signTime;
 
     public Integer getId() {

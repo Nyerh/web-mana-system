@@ -10,10 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +23,7 @@ import java.util.function.Supplier;
  * @Description:
  */
 @RestController
-@Api(value = "签到记录管理接口")
+@Api(description = "签到记录管理接口")
 @RequestMapping("signDetail")
 public class SignDetailApi {
 
@@ -38,7 +35,7 @@ public class SignDetailApi {
 
 
 
-    @RequestMapping("/showDetails")
+    @GetMapping("/showDetails")
     @ApiOperation("展示签到信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", dataType = "Integer", value = "信息记录编号"),
@@ -70,7 +67,7 @@ public class SignDetailApi {
                 .setState(STATE.Success.getState());
     }
 
-    @RequestMapping("/cancelSign")
+    @GetMapping("/cancelSign")
     @ApiOperation("删除签到记录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", dataType = "Integer", value = "记录id"),
@@ -98,7 +95,7 @@ public class SignDetailApi {
     }
 
 
-    @RequestMapping("/exportSignDetail")
+    @PostMapping("/exportSignDetail")
     @ApiOperation("导出所选签到记录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "signDetailList", dataType = "List<Integer>", value = "需要导出的记录id列表"),

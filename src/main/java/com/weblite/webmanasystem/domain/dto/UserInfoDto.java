@@ -1,10 +1,13 @@
 package com.weblite.webmanasystem.domain.dto;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author ：Beatrice
  * @date ：Created in 2020/2/17 15:13
  * @Description:
  */
+@Component
 public class UserInfoDto {
 
     private String uId;

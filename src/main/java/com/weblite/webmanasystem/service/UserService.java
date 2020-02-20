@@ -5,7 +5,6 @@ import com.weblite.webmanasystem.constant.USERCODE;
 import com.weblite.webmanasystem.domain.dto.UserInfoDto;
 import com.weblite.webmanasystem.domain.entity.Authority;
 import com.weblite.webmanasystem.domain.entity.User;
-import com.weblite.webmanasystem.domain.entity.View;
 import com.weblite.webmanasystem.mapper.AuthorityMapper;
 import com.weblite.webmanasystem.mapper.UserMapper;
 import com.weblite.webmanasystem.mapper.ViewMapper;
@@ -21,6 +20,7 @@ import java.util.*;
  */
 @Service
 public class UserService {
+
     @Resource
     UserMapper userMapper;
     @Resource

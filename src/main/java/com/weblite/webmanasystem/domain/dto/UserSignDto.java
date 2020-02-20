@@ -1,5 +1,7 @@
 package com.weblite.webmanasystem.domain.dto;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
 /**
@@ -7,6 +9,7 @@ import java.util.Date;
  * @date ：Created in 2020/2/15 16:41
  * @Description:用户登录信息
  */
+@Component
 public class UserSignDto {
     private Integer id;
 

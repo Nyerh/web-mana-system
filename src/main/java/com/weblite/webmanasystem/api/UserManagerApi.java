@@ -24,7 +24,7 @@ import java.util.*;
  * @Description:
  */
 @RestController
-@Api(value = "用户管理接口")
+@Api(description = "用户管理接口")
 @RequestMapping("userManager")
 public class UserManagerApi {
     @Resource

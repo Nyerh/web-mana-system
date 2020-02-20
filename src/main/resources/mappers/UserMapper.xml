@@ -76,21 +76,25 @@
       u_password = #{uPassword,jdbcType=VARCHAR}
     where u_id = #{uId,jdbcType=VARCHAR}
   </update>
-    <select id="selectAllSelective" resultMap="BaseResultMap">
-      select <include refid="Base_Column_List" />
+
+  <select id="selectAllSelective" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
     from user
     where 1=1
     <if test="user.uId != null and user.uId != ''"> and u_id=#{user.uId}</if>
     <if test="user.uName != null and user.uName != ''"> and u_name=#{user.uName}</if>
     <if test="user.uPassword != null and user.uPassword != ''"> and u_password=#{user.uPassword}</if>
-      limit #{page},#{pageSize};
-    </select>
-    <select id="selectBySelective" resultMap="BaseResultMap">
-      select <include refid="Base_Column_List" />
-      from user
-      where 1=1
-      <if test="user.uId != null and user.uId != ''"> and u_id=#{user.uId}</if>
-      <if test="user.uName != null and user.uName != ''"> and u_name=#{user.uName}</if>
-      <if test="user.uPassword != null and user.uPassword != ''"> and u_password=#{user.uPassword}</if>
-    </select>
+    limit #{page},#{pageSize};
+  </select>
+  <select id="selectBySelective" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from user
+    where 1=1
+    <if test="user.uId != null and user.uId != ''"> and u_id=#{user.uId}</if>
+    <if test="user.uName != null and user.uName != ''"> and u_name=#{user.uName}</if>
+    <if test="user.uPassword != null and user.uPassword != ''"> and u_password=#{user.uPassword}</if>
+  </select>
+
+
+
 </mapper>

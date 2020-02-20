@@ -1,5 +1,8 @@
 package com.weblite.webmanasystem.domain.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class View {
     private Integer vId;
 

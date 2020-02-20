@@ -1,4 +1,4 @@
-package com.weblite.webmanasystem.config;
+package com.weblite.webmanasystem.api;
 
 import com.google.common.base.Predicates;
 import io.swagger.annotations.Api;

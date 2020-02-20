@@ -1,10 +1,11 @@
 package com.weblite.webmanasystem.mapper;
 
 import com.weblite.webmanasystem.domain.entity.Authority;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface AuthorityMapper {
     int deleteByPrimaryKey(String aId);
 
