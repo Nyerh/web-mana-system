@@ -33,7 +33,7 @@ public class UserManagerApi {
     UserService userService;
 
 
-    @PostMapping("userLogin")
+    @PostMapping("/userLogin")
     @ApiOperation("用户登录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", dataType = "String", value = "账号"),
@@ -54,7 +54,7 @@ public class UserManagerApi {
     }
 
 
-    @PostMapping("userRegister")
+    @PostMapping("/userRegister")
     @ApiOperation("用户注册")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", dataType = "String", value = "账号"),
@@ -74,7 +74,7 @@ public class UserManagerApi {
     }
 
 
-    @GetMapping("userInfoChange")
+    @GetMapping("/userInfoChange")
     @ApiOperation("管理员修改用户信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "uId", dataType = "String", value = "用户id"),
@@ -128,7 +128,7 @@ public class UserManagerApi {
     }
 
 
-    @PostMapping("showUserList")
+    @PostMapping("/showUserList")
     @ApiOperation("展示用户清单")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", dataType = "String", value = "账号"),

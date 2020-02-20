@@ -57,11 +57,13 @@ public class UserService {
     {
         Long flowNum = Common.getFlowNum();
         String uId= USERCODE.STU.getCode()+flowNum;
+        String aId=Common.getFlowNum().toString();
         User user = new User();
         user.setuId(uId);
         user.setuPassword(password);
         user.setuName(username);
         Authority authority = new Authority();
+        authority.setaId(aId);
         authority.setuId(uId);
         authority.setaIdentity(USERCODE.STU.getAuth());
         int userInsert = userMapper.insertSelective(user);

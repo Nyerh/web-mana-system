@@ -38,7 +38,7 @@ public class SignDetailApi {
 
 
 
-    @RequestMapping("showDetails")
+    @RequestMapping("/showDetails")
     @ApiOperation("展示签到信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", dataType = "Integer", value = "信息记录编号"),
@@ -70,7 +70,7 @@ public class SignDetailApi {
                 .setState(STATE.Success.getState());
     }
 
-    @RequestMapping("cancelSign")
+    @RequestMapping("/cancelSign")
     @ApiOperation("删除签到记录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", dataType = "Integer", value = "记录id"),
@@ -98,7 +98,7 @@ public class SignDetailApi {
     }
 
 
-    @RequestMapping("exportSignDetail")
+    @RequestMapping("/exportSignDetail")
     @ApiOperation("导出所选签到记录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "signDetailList", dataType = "List<Integer>", value = "需要导出的记录id列表"),
