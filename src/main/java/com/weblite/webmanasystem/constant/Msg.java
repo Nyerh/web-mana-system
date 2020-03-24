@@ -16,7 +16,17 @@ public class Msg {
     {
     }
 
-    public Msg(int state,int total, String msg, Object items)
+    public Msg(int state, Object items) {
+        this.state = state;
+        this.items = items;
+    }
+
+    public Msg(int state, String msg) {
+        this.state = state;
+        this.msg = msg;
+    }
+
+    public Msg(int state, int total, String msg, Object items)
     {
         this.state = state;
         this.total=total;
