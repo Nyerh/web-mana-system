@@ -147,7 +147,7 @@ public class SignDetailApi {
         {
             return new Msg(STATE.ParamErr.getState(),"无签到时间");
         }
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Date parse = format.parse(signTime);
             Integer save = signDetailService.saveSignDetail(uId, parse);
