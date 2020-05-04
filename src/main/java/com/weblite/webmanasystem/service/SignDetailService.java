@@ -83,6 +83,15 @@ public class SignDetailService {
     }
 
 
+    public Integer saveSignDetail(String uId,Date signTime)
+    {
+        SignDetail signDetail = new SignDetail();
+        signDetail.setuId(uId);
+        signDetail.setSignTime(signTime);
+        return signDetailMapper.insert(signDetail);
+    }
+
+
 
 
 }

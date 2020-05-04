@@ -11,10 +11,12 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.function.Supplier;
 
@@ -33,9 +35,6 @@ public class SignDetailApi {
     @Resource
     UserService userService;
 
-
-
-
     @GetMapping("/showDetails")
     @ApiOperation("展示签到信息")
     @ApiImplicitParams({
@@ -52,7 +51,7 @@ public class SignDetailApi {
                            @RequestParam(value = "uId",required = false) String curUId)
     {
         String authByUId = userService.getAuthByUId(curUId);
-        String s = Optional.ofNullable(authByUId).orElseGet(() -> "");
+        String s = Optional.ofNullable(authByUId).orElse("");
         if(!curUId.equals(uId) &&!s.equals("管理员"))
         {
             return new Msg()
@@ -124,5 +123,42 @@ public class SignDetailApi {
         helper.exportByMap(excelWriteSheetFormatList,"签到明细"+ Common.getNowDateString("YYYYMMdd"), httpServletResponse);
         return new Msg().setMsg("导出成功")
                 .setState(STATE.Success.getState());
+    }
+
+
+    @PostMapping("importDetail")
+    @ApiOperation("接收APP传入签到信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "uId", dataType = "String", value = "用户编号"),
+            @ApiImplicitParam(name = "signTime", dataType = "String", value = "签到时间")
+    })
+    public Msg appImportSignDetail(@RequestBody Map<String,String> map) throws Exception {
+        if(map==null)
+        {
+            return new Msg(STATE.ParamErr.getState(),"无参数");
+        }
+        String uId = map.get("uId");
+        if(StringUtils.isEmpty(uId))
+        {
+            return new Msg(STATE.ParamErr.getState(),"无用户编码");
+        }
+        String signTime = map.get("signTime");
+        if(StringUtils.isEmpty(signTime))
+        {
+            return new Msg(STATE.ParamErr.getState(),"无签到时间");
+        }
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd hh:mm:ss");
+        try {
+            Date parse = format.parse(signTime);
+            Integer save = signDetailService.saveSignDetail(uId, parse);
+            if(save==null||save==0)
+            {
+                throw new Exception("保存失败");
+            }
+        }catch (Exception e)
+        {
+            throw new Exception("写入时出错"+e.getMessage());
+        }
+        return new Msg(STATE.Success.getState(),"保存签到信息成功");
     }
 }
