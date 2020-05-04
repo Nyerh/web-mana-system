@@ -77,7 +77,7 @@ public class SignDetailApi {
                           @RequestParam("curUId") String curUId)
     {
         String authByUId = userService.getAuthByUId(curUId);
-        String s = Optional.ofNullable(authByUId).orElseGet(() -> "");
+        String s = Optional.ofNullable(authByUId).orElse("");
         if(!s.equals("管理员"))
         {
             return new Msg()

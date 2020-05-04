@@ -6,10 +6,16 @@
     <id column="u_id" jdbcType="VARCHAR" property="uId" />
     <result column="u_name" jdbcType="VARCHAR" property="uName" />
     <result column="u_password" jdbcType="VARCHAR" property="uPassword" />
+    <result column="u_class" jdbcType="VARCHAR" property="uClass" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+    <result column="stu_id" jdbcType="VARCHAR" property="stuId" />
+    <result column="stu_name" jdbcType="VARCHAR" property="stuName" />
+    <result column="data_create_time" jdbcType="TIMESTAMP" property="dataCreateTime" />
+    <result column="data_modify_time" jdbcType="TIMESTAMP" property="dataModifyTime" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    u_id, u_name, u_password
+    u_id, u_name, u_password, u_class, grade, stu_id, stu_name, data_create_time, data_modify_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -25,9 +31,13 @@
   </delete>
   <insert id="insert" parameterType="com.weblite.webmanasystem.domain.entity.User">
     <!--@mbg.generated-->
-    insert into user (u_id, u_name, u_password
+    insert into user (u_id, u_name, u_password, 
+      u_class, grade, stu_id, 
+      stu_name, data_create_time, data_modify_time
       )
-    values (#{uId,jdbcType=VARCHAR}, #{uName,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}
+    values (#{uId,jdbcType=VARCHAR}, #{uName,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, 
+      #{uClass,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, #{stuId,jdbcType=VARCHAR}, 
+      #{stuName,jdbcType=VARCHAR}, #{dataCreateTime,jdbcType=TIMESTAMP}, #{dataModifyTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.weblite.webmanasystem.domain.entity.User">
@@ -43,6 +53,24 @@
       <if test="uPassword != null">
         u_password,
       </if>
+      <if test="uClass != null">
+        u_class,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="stuId != null">
+        stu_id,
+      </if>
+      <if test="stuName != null">
+        stu_name,
+      </if>
+      <if test="dataCreateTime != null">
+        data_create_time,
+      </if>
+      <if test="dataModifyTime != null">
+        data_modify_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uId != null">
@@ -53,6 +81,24 @@
       </if>
       <if test="uPassword != null">
         #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uClass != null">
+        #{uClass,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="stuId != null">
+        #{stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuName != null">
+        #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCreateTime != null">
+        #{dataCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataModifyTime != null">
+        #{dataModifyTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -66,6 +112,24 @@
       <if test="uPassword != null">
         u_password = #{uPassword,jdbcType=VARCHAR},
       </if>
+      <if test="uClass != null">
+        u_class = #{uClass,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="stuId != null">
+        stu_id = #{stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuName != null">
+        stu_name = #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCreateTime != null">
+        data_create_time = #{dataCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataModifyTime != null">
+        data_modify_time = #{dataModifyTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where u_id = #{uId,jdbcType=VARCHAR}
   </update>
@@ -73,7 +137,13 @@
     <!--@mbg.generated-->
     update user
     set u_name = #{uName,jdbcType=VARCHAR},
-      u_password = #{uPassword,jdbcType=VARCHAR}
+      u_password = #{uPassword,jdbcType=VARCHAR},
+      u_class = #{uClass,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      stu_id = #{stuId,jdbcType=VARCHAR},
+      stu_name = #{stuName,jdbcType=VARCHAR},
+      data_create_time = #{dataCreateTime,jdbcType=TIMESTAMP},
+      data_modify_time = #{dataModifyTime,jdbcType=TIMESTAMP}
     where u_id = #{uId,jdbcType=VARCHAR}
   </update>
 
