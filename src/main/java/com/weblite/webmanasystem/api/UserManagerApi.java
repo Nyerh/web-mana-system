@@ -39,9 +39,10 @@ public class UserManagerApi {
             @ApiImplicitParam(name = "username", dataType = "String", value = "账号"),
             @ApiImplicitParam(name = "password", dataType = "String", value = "密码"),
     })
-    public Msg userLogin(@RequestParam(value = "username") String username,
-                         @RequestParam(value = "password") String password)
+    public Msg userLogin(@RequestBody Map<String,String> map)
     {
+        String username = map.get("username");
+        String password = map.get("password");
         UserInfoDto login = userService.login(username, password);
         if(login.getuId()==null||login.getaIdentity()==null)
         {
@@ -60,9 +61,10 @@ public class UserManagerApi {
             @ApiImplicitParam(name = "username", dataType = "String", value = "账号"),
             @ApiImplicitParam(name = "password", dataType = "String", value = "密码"),
     })
-    public Msg userRegister(@RequestParam(value = "username") String username,
-                          @RequestParam(value = "password") String password)
+    public Msg userRegister(@RequestBody Map<String,String> map)
     {
+        String username = map.get("username");
+        String password = map.get("password");
         Integer register = userService.register(username, password);
         if(register==0)
         {
@@ -135,10 +137,11 @@ public class UserManagerApi {
             @ApiImplicitParam(name = "uId", dataType = "String", value = "用户id"),
             @ApiImplicitParam(name = "aIdentity", dataType = "String", value = "身份"),
     })
-    public Msg showUserList(@RequestParam(value = "username",required = false)String username,
-                            @RequestParam(value = "uId",required = false)String uId,
-                            @RequestParam(value = "aIdentity",required = false)String aIdentity)
+    public Msg showUserList(@RequestBody Map<String,String> map)
     {
+        String username = map.get("username");
+        String uId = map.get("uId");
+        String aIdentity = map.get("aIdentity");
         User user = new User();
         user.setuId(uId);
         user.setuName(username);
