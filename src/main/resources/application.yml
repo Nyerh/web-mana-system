@@ -13,6 +13,12 @@ spring:
       max-active: 10
       min-idle: 3
       filters: stat,wall
+  security:
+    user:
+      password: root
+      name: root
+      roles: admin
+
 mconfig:
   swagger-ui-open:true
 mybatis:
